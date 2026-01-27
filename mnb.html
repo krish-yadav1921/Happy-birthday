@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Birthday Kanak</title>
+  <meta name="description" content="A special birthday page for Kanak" />
+  <style>
+    /* Basic reset */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(120deg,#0f172a 0%, #1e293b 45%, #7c3aed 100%);
+      color:#fff;
+      display:flex;align-items:center;justify-content:center;
+      padding:32px;
+    }
+    .card{
+      width:100%;max-width:920px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius:20px;padding:36px;border:1px solid rgba(255,255,255,0.06);
+      box-shadow:0 10px 30px rgba(2,6,23,0.6);backdrop-filter: blur(6px);
+      position:relative;overflow:hidden;
+    }
+    h1{font-size:48px;line-height:1.02;margin-bottom:8px;letter-spacing: -1px}
+    .sub{opacity:.9;margin-bottom:18px;font-weight:600}
+    .date{font-size:18px;color:rgba(255,255,255,0.85);margin-bottom:18px}
+    .btn{
+      display:inline-block;padding:12px 20px;border-radius:12px;font-weight:700;
+      background:linear-gradient(90deg,#ff6b6b,#ffb86b);color:#06121a;text-decoration:none;
+      box-shadow:0 6px 18px rgba(255,107,107,0.18);transition:transform .18s ease, box-shadow .18s;
+    }
+    .btn:active{transform:translateY(2px)}
+    .message{
+      margin-top:20px;font-size:18px;min-height:72px;
+    }
+
+    /* typewriter */
+    .typewriter > .wrap { border-right: .12em solid rgba(255,255,255,0.6); padding-right:3px; }
+
+    /* small footer link */
+    .footer{position:absolute;right:18px;bottom:12px;font-size:12px;opacity:0.7}
+
+    /* decorative blurred circles */
+    .blur-circle{position:absolute;border-radius:50%;filter:blur(38px);opacity:0.08}
+    .c1{width:420px;height:420px;right:-80px;top:-40px;background:#ff6b6b}
+    .c2{width:340px;height:340px;left:-120px;bottom:-60px;background:#7c3aed}
+
+    /* confetti canvas full */
+    canvas{position:absolute;inset:0;pointer-events:none}
+
+    /* responsive */
+    @media (max-width:600px){
+      h1{font-size:32px}
+      .card{padding:20px;border-radius:14px}
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="main">
+    <div class="blur-circle c1"></div>
+    <div class="blur-circle c2"></div>
+
+    <h1>Happy Birthday, <span style="color:#ffefc6">Kanak</span> 🎉</h1>
+    <div class="sub">My Bakli — aaj ka din special hai</div>
+    <div class="date">21 Feb 2026</div>
+
+    <a class="btn" id="openBtn" href="#message">Click Here Kanak</a>
+
+    <div class="message" id="message" style="display:none">
+      <div class="typewriter"><span class="wrap" id="typeText"></span></div>
+    </div>
+
+    <div style="margin-top:18px">
+      <!-- optional small image area -->
+      <img id="cardImage" src="" alt="" style="max-width:160px;border-radius:12px;display:none">
+    </div>
+
+    <div class="footer">With ❤️ — From Krish</div>
+    <canvas id="confetti"></canvas>
+  </div>
+
+  <!-- Optional background music (uncomment and set src if you want music) -->
+  <!-- <audio id="bgm" src="path/to/music.mp3" loop preload="auto"></audio> -->
+
+<script>
+  // Typewriter + message content
+  const sentences = [
+    "Dear Kanak — tum meri zindagi ki ek roshni ho.",
+    "Har pal tumhari hasi aur success ki dua karta hoon.",
+    "Aaj ka din tumhare liye pyaar, khushiyaan aur naye sapne laaye."
+  ];
+  const typeEl = document.getElementById('typeText');
+  const messageBox = document.getElementById('message');
+  const btn = document.getElementById('openBtn');
+  const confettiCanvas = document.getElementById('confetti');
+  const ctx = confettiCanvas.getContext('2d');
+
+  // resize canvas
+  function fitCanvas(){
+    confettiCanvas.width = window.innerWidth;
+    confettiCanvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', fitCanvas);
+  fitCanvas();
+
+  // simple typewriter that cycles sentences
+  function typeSentences(list, el, idx=0, i=0){
+    if(idx >= list.length) return;
+    const txt = list[idx];
+    el.textContent = txt.slice(0, i);
+    if(i < txt.length){
+      setTimeout(()=> typeSentences(list, el, idx, i+1), 40 + Math.random()*30);
+    } else {
+      setTimeout(()=> {
+        // after full sentence, show next sentence (append with line break)
+        if(idx+1 < list.length){
+          el.textContent += " \n";
+          typeSentences(list, el, idx+1, 0);
+        }
+      }, 900);
+    }
+  }
+
+  // Confetti implementation (lightweight)
+  const confettiPieces = [];
+  function spawnConfetti(x, y){
+    for(let i=0;i<80;i++){
+      confettiPieces.push({
+        x: x + (Math.random()-0.5)*60,
+        y: y + (Math.random()-0.5)*20,
+        vx: (Math.random()-0.5)*6,
+        vy: - (2 + Math.random()*6),
+        r: 3 + Math.random()*6,
+        life: 80 + Math.random()*40,
+        color: ['#ff6b6b','#ffd56b','#7c3aed','#6ee7b7','white'][Math.floor(Math.random()*5)]
+      });
+    }
+  }
+  function confettiLoop(){
+    ctx.clearRect(0,0,confettiCanvas.width, confettiCanvas.height);
+    for(let i=confettiPieces.length-1;i>=0;i--){
+      const p = confettiPieces[i];
+      p.vy += 0.12; p.x += p.vx; p.y += p.vy; p.life--;
+      ctx.beginPath();
+      ctx.fillStyle = p.color;
+      ctx.ellipse(p.x, p.y, p.r, p.r*0.6, 0,0,Math.PI*2);
+      ctx.fill();
+      if(p.life<=0 || p.y > confettiCanvas.height+50) confettiPieces.splice(i,1);
+    }
+    requestAnimationFrame(confettiLoop);
+  }
+  confettiLoop();
+
+  // Open button behavior
+  btn.addEventListener('click', function(e){
+    e.preventDefault();
+    messageBox.style.display = 'block';
+    // start typewriter
+    typeEl.textContent = "";
+    typeSentences(sentences, typeEl);
+    // spawn confetti near center
+    const cx = window.innerWidth/2, cy = window.innerHeight/2;
+    spawnConfetti(cx, cy);
+    // play optional music
+    // const bgm = document.getElementById('bgm'); if(bgm) bgm.play();
+    // scroll to message smoothly
+    setTimeout(()=> document.getElementById('message').scrollIntoView({behavior:'smooth'}), 120);
+  });
+
+  // optional: show an image if you set URL
+  const img = document.getElementById('cardImage');
+  // Uncomment and set image URL if you want a photo
+  // img.src = 'images/kanak.jpg'; img.style.display = 'block';
+
+  // Accessibility: allow Enter key on focused button
+  btn.tabIndex = 0;
+  btn.addEventListener('keydown', function(ev){ if(ev.key === 'Enter'){ this.click(); } });
+
+</script>
+</body>
+</html>

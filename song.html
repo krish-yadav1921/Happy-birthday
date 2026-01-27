@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>💖 Songs 💖</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle at top, #ffcce1, #ffb6c1, #ffb3a0);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: "Poppins", sans-serif;
+      overflow: hidden;
+      color: #fff;
+    }
+
+    /* Floating petals */
+    .petal {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background: radial-gradient(circle, #ffc0cb 40%, transparent 60%);
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: float 10s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* ❤️ Glowing Heart */
+    .heart {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(145deg, #ff0000, #ff3f3f);
+  transform: rotate(-45deg);
+  box-shadow: 0 10px 20px rgb(255, 6, 6),
+              inset -5px -5px 15px rgb(255, 3, 3),
+              inset 5px 5px 10px rgba(255, 15, 15, 0.989);
+  animation: beat 2.3s infinite ease-in-out;
+  margin: 0 auto 30px;
+  border-radius: 20px;
+}
+
+/* Create top circles of heart */
+.heart::before,
+.heart::after {
+  content: '';
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(145deg, #fe1e00, #ee3d3d);
+  border-radius: 50%;
+  box-shadow: inherit;
+}
+
+.heart::before {
+  top: -60px;
+  left: 0;
+}
+
+.heart::after {
+  left: 60px;
+  top: 0;
+}
+
+/* Heart beat animation */
+@keyframes beat {
+  0%, 100% {
+    transform: rotate(-45deg) scale(1);
+  }
+  50% {
+    transform: rotate(-45deg) scale(1.15);
+  }
+}
+
+    h1 {
+      font-size: 2.5em;
+      text-align: center;
+      margin: 40px 0 40px;
+      background: linear-gradient(90deg, #f5517a, #ffaba0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px rgba(255,255,255,0.6);
+    }
+
+    /* Cards */
+    .songs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+
+    .card {
+      width: 240px;
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 20px rgba(255, 182, 193, 0.4);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      backdrop-filter: blur(6px);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(255, 182, 193, 0.6);
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      font-size: 1.2em;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 0.9em;
+      color: #ffeef5;
+    }
+#audio-player {
+  width: 330px;
+  padding: 16px 24px;
+  border-radius: 40px;
+  background: linear-gradient(
+    135deg,
+    #ffd6e8,
+    #ff8fcf,
+    #ffb6dc
+  );
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 12px 25px rgba(255, 140, 190, 0.45),
+    inset 0 2px 6px rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  backdrop-filter: blur(6px);
+  transition: all 0.35s ease;
+  filter: drop-shadow(0 8px 12px rgba(255, 150, 200, 0.35));
+}
+
+/* Romantic hover ✨ */
+#audio-player:hover {
+  transform: translateY(-4px) scale(1.06);
+  background: linear-gradient(
+    135deg,
+    #ffe4f1,
+    #ff9ad5,
+    #ffc1e3
+  );
+  box-shadow:
+    0 18px 35px rgba(255, 120, 190, 0.6),
+    inset 0 3px 8px rgba(255, 255, 255, 0.8);
+}
+
+/* Soft press effect 💕 */
+#audio-player:active {
+  transform: scale(0.97);
+  box-shadow:
+    0 8px 15px rgba(255, 120, 190, 0.4),
+    inset 0 4px 10px rgba(255, 255, 255, 0.6);
+}
+
+
+    /* Petal placement */
+    .petal:nth-child(1) { left: 10%; animation-duration: 8s; }
+    .petal:nth-child(2) { left: 25%; animation-duration: 11s; }
+    .petal:nth-child(3) { left: 40%; animation-duration: 9s; }
+    .petal:nth-child(4) { left: 60%; animation-duration: 10s; }
+    .petal:nth-child(5) { left: 80%; animation-duration: 12s; }
+  </style>
+</head>
+<body>
+  <div class="heart"></div>
+  <h1>💗 Every lyric here speaks what I feel 💗</h1>
+
+  <div class="songs">
+<div class="card" data-src="enna sona.mp3"><h3>Enna Sona</h3></div>
+<div class="card" data-src="song1.mp3"><h3>Meharbani</h3></div>
+<div class="card" data-src="song2.mp3"><h3>Bulleya</h3></div>
+<div class="card" data-src="song3.mp3"><h3>Tu Jaane Na</h3></div>
+<div class="card" data-src="song4.mp3"><h3>Dooron Dooron</h3></div>
+<div class="card" data-src="song5.mp3"><h3>Afreen Afreen</h3></div>
+<div class="card" data-src="song6.mp3"><h3>O Re Piya</h3></div>
+<div class="card" data-src="song7.mp3"><h3>Lal Ishq</h3></div>
+
+
+  </div>
+
+ 
+
+  <audio id="audio-player" controls style="display:none;"></audio>
+  
+
+<script>
+const songs = document.querySelectorAll('.card');
+const player = document.getElementById('audio-player');
+let current = null;
+
+songs.forEach(song => {
+  song.addEventListener('click', () => {
+    const src = song.getAttribute('data-src');
+
+    if (current === song && !player.paused) {
+      player.pause();
+      song.classList.remove('playing');
+      return;
+    }
+
+    songs.forEach(s => s.classList.remove('playing'));
+    song.classList.add('playing');
+
+    player.src = src;
+    player.style.display = 'block';
+    player.play();
+    current = song;
+  });
+});
+
+player.addEventListener('ended', () => {
+  if (current) current.classList.remove('playing');
+});
+</script>
+
+
+
+
+
+  <!-- Floating petals -->
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+  <div class="petal"></div>
+
+  
+</body>
+</html>

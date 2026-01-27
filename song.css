@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffc4d4, #ffb6c1);
+  font-family: 'Poppins', sans-serif;
+  flex-direction: column;
+}
+
+/* Container */
+.heart-container {
+  text-align: center;
+}
+
+/* 3D Heart Shape */
+.heart {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(145deg, #c90e3d, #f80a46);
+  transform: rotate(-45deg);
+  box-shadow: 0 10px 20px rgba(255, 20, 100, 0.4),
+              inset -5px -5px 15px rgba(255, 20, 100, 0.4),
+              inset 5px 5px 10px rgba(255, 255, 255, 0.3);
+  animation: beat 1.3s infinite ease-in-out;
+  margin: 0 auto 30px;
+  border-radius: 20px;
+}
+
+/* Create top circles of heart */
+.heart::before,
+.heart::after {
+  content: '';
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(145deg, #f30641, #f00c45);
+  border-radius: 50%;
+  box-shadow: inherit;
+}
+
+.heart::before {
+  top: -60px;
+  left: 0;
+}
+
+.heart::after {
+  left: 60px;
+  top: 0;
+}
+
+/* Heart beat animation */
+@keyframes beat {
+  0%, 100% {
+    transform: rotate(-45deg) scale(1);
+  }
+  50% {
+    transform: rotate(-45deg) scale(1.15);
+  }
+}
+
+/* Title */
+h1 {
+  color: white;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+h1 span {
+  font-size: 1.8rem;
+  vertical-align: middle;
+}

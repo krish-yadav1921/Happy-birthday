@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For You ✨</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:linear-gradient(180deg,#ffe6f1,#eef4ff,#ffffff);
+      color:#222;
+      overflow-x:hidden;
+    }
+    section{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px 20px;
+    }
+    .hero{
+      text-align:center;
+    }
+    .hero h1{
+      font-size:3rem;
+      font-weight:600;
+      color:#ff5fa2;
+      animation:fadeUp 1.5s ease;
+    }
+    .hero p{
+      margin-top:15px;
+      font-size:1.2rem;
+      color:#4a6cff;
+      animation:fadeUp 2.2s ease;
+    }
+    .scroll{
+      margin-top:60px;
+      font-size:0.9rem;
+      opacity:0.7;
+      animation:blink 2s infinite;
+    }
+    .card{
+      max-width:700px;
+      background:rgba(255,255,255,0.75);
+      backdrop-filter:blur(12px);
+      border-radius:25px;
+      padding:40px;
+      box-shadow:0 20px 50px rgba(0,0,0,0.12);
+      animation:fadeUp 1.5s ease;
+    }
+    .card h2{
+      color:#ff5fa2;
+      font-weight:500;
+      margin-bottom:20px;
+    }
+    .card p{
+      line-height:1.9;
+      font-size:1.05rem;
+      color:#333;
+    }
+    .final{
+      text-align:center;
+    }
+    .final h2{
+      font-size:2.2rem;
+      color:#ff5fa2;
+      margin-bottom:20px;
+    }
+    .final p{
+      font-size:1.1rem;
+      color:#444;
+    }
+    @keyframes fadeUp{
+      from{opacity:0;transform:translateY(30px);} 
+      to{opacity:1;transform:translateY(0);} 
+    }
+    @keyframes blink{
+      0%,100%{opacity:0.2;}50%{opacity:0.8;}
+    }
+
+    .image-wrap img{
+  width:100%;
+  max-height:580px;        /* image ki height control */
+  object-fit:cover;        /* image cut ho but ugly na lage */
+  border-radius:22px;
+  opacity:0.92;
+}
+@media(max-width:600px){
+  .image-wrap img{
+    max-height:260px;
+  }
+}
+.image-wrap{
+  overflow:hidden;
+}
+.image-wrap img{
+  transition:transform 0.6s ease;
+}
+.image-wrap img:hover{
+  transform:scale(1.04);
+}
+
+.final{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+}
+
+.btn-3d{
+  padding:16px 42px;
+  font-size:1.1rem;
+  font-weight:500;
+  letter-spacing:1px;
+  color:#fff;
+  background:linear-gradient(145deg,#ff6fb1,#ff4d8d);
+  border:none;
+  border-radius:40px;
+  cursor:pointer;
+
+  /* 3D depth */
+  box-shadow:
+    0 12px 0 #d63c72,
+    0 18px 35px rgba(0,0,0,0.25);
+
+  transform:translateY(0);
+  transition:all 0.2s ease;
+}
+
+.btn-3d:hover{
+  transform:translateY(-3px);
+  box-shadow:
+    0 15px 0 #d63c72,
+    0 25px 45px rgba(0,0,0,0.3);
+}
+
+.btn-3d:active{
+  transform:translateY(8px);
+  box-shadow:
+    0 4px 0 #d63c72,
+    0 8px 15px rgba(0,0,0,0.25);
+}
+
+
+  </style>
+</head>
+<body>
+
+<section class="hero">
+  <div>
+    <h1>Hey… Happy Birthday 🎂</h1>
+    <p>Not loudly. Not dramatically. Just honestly.</p>
+    <div class="scroll">scroll ↓</div>
+   
+  </div>
+</section>
+
+<section>
+  <div class="card" style="display:grid;grid-template-columns:1fr;gap:24px">
+
+    <div class="image-wrap">
+  <img src="IMG-20240617-WA0000.jpg" alt="">
+</div>
+
+      <h2> 🌙</h2>
+      <p>
+        I didn’t want to post a story.
+        I didn’t want to write something copied.
+        I just wanted to do <i>this</i>.
+        <br/><br/>
+        Because some chapters don’t need rewriting.
+        What they were once already matters.
+        <br/><br/>
+    
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="card" style="display:grid;grid-template-columns:1fr;gap:24px">
+ <div class="image-wrap">
+ <img src="IMG_20240720_113331_883.jpg" alt="">    
+ </div>
+   <div>
+      <h2>On your birthday ✨</h2>
+      <p>
+        I hope you feel calm today.
+        I hope you smile without forcing it.
+        I hope you realize — even on normal days —
+        you matter more than you think.
+        <br/><br/>
+        And yes… even if you’re far away now,
+        and our paths aren’t what they used to be,
+        some feelings don’t turn bitter with time.
+        They just become quieter,
+        softer,
+        and a little more honest.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div>
+   <a href="Krishhhhhhhhh.pdf">
+   <button class="btn-3d">
+      click here
+    </button>
+
+   </a>
+ 
+  </div>
+</section>
+
+
+</body>
+</html>
